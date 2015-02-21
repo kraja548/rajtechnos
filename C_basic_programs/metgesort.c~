@@ -1,0 +1,65 @@
+#include<stdio.h>
+void mergesort(int list[],int min, int mid, int max)
+{
+	int templist[30];
+	int i,j,k,m;
+	j=min;
+	m=mid+1;	
+	for(i=min;j<mid && m<max;i++)
+	{
+	  if(list[j]<list[m])
+	  {  		
+  	 	templist[i]=list[j];
+		j++;	
+  	  }
+	  else
+	  {
+  	 	templist[i]=list[m];
+		m++;	
+   	  }	
+	}
+	if(j>mid)
+    {
+     for(k=m; k<=max; k++)
+     {
+         templist[i]=list[k];
+         i++;
+     }
+    }
+    else
+    {
+     for(k=j; k<=mid; k++)
+     {
+        templist[i]=list[k];
+        i++;
+     }
+    }
+	for(k=min; k<=max; k++)
+     list[k]=templist[k];	
+}
+void partition(int list[],int min, int max)
+{
+	int mid;
+	if(min<max)
+	{
+		mid=(min+max)/2;
+		partition(list,min,mid);
+		partition(list,mid+1,max);
+		mergesort(list,min,mid,max);
+	}
+}
+
+main()
+{
+int list[30],i,size;
+printf("Enter the arry size :");
+scanf("%d",&size);
+printf("\nEnter elements\n");
+for(i=0;i<size;i++)
+{
+	scanf("%d",&list[i]);
+}
+partition(list,0,size-1);
+for(i=0;i<size;i++)
+    printf("%d\t",list[i]);
+}
