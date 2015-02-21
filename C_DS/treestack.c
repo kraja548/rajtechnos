@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include"treestack.h"
+main()
+{
+  push(5);
+  push(4);
+  push(3);
+  push(9);
+  push(8);
+  printf("%d",pop()->item);
+  printf("%d",top()->item);
+}
